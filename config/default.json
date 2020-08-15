@@ -1,3 +1,4 @@
 {
-    "mongoURI":"mongodb+srv://ali1:bkdhJaIYT96SqIL8@mongoali-qcgnw.mongodb.net/DevConnect?retryWrites=true&w=majority"
+    "mongoURI":"mongodb+srv://ali1:bkdhJaIYT96SqIL8@mongoali-qcgnw.mongodb.net/DevConnect?retryWrites=true&w=majority",
+    "jwtToken":"mysecrettoken"
 }
