@@ -20,6 +20,10 @@ const ProfileSchema = new mongoose.Schema({
     bio: {
         type: String,
     },
+    status:{
+        type: String,
+        required:true,
+    },
     githubusername: {
         type: String,
     },
