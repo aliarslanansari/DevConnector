@@ -1,4 +1,7 @@
 const express = require('express')
+const axios = require('axios')
+const request = require('request')
+const config = require('config')
 const router = express.Router()
 const { check, validationResult } = require('express-validator')
 const auth = require('../../middleware/auth')
@@ -252,6 +255,29 @@ router.delete('/education/:edu_id', auth, async (req, res) => {
     profile.education.splice(removeIndex, 1)
     await profile.save()
     res.json(profile)
+  } catch (error) {
+    console.error(error.message)
+    res.status(500).send('Server Error')
+  }
+})
+
+// @route GET api/profile/github/:username
+// @desc  get user repos from github
+// @access Public
+router.get('/github/:username', async (req, res) => {
+  try {
+    axios({
+      method: 'get',
+      url: `https://api.github.com/users/${req.params.username}/repos`,
+    })
+      .then((response) => {
+        console.log(response.data)
+        res.json(response.data)
+      })
+      .catch((err) => {
+        console.error(err)
+        res.status(404).json({ msg: 'no github profile found' })
+      })
   } catch (error) {
     console.error(error.message)
     res.status(500).send('Server Error')
