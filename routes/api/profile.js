@@ -1,7 +1,5 @@
 const express = require('express')
 const axios = require('axios')
-const request = require('request')
-const config = require('config')
 const router = express.Router()
 const { check, validationResult } = require('express-validator')
 const auth = require('../../middleware/auth')
@@ -268,7 +266,7 @@ router.get('/github/:username', async (req, res) => {
   try {
     axios({
       method: 'get',
-      url: `https://api.github.com/users/${req.params.username}/repos`,
+      url: `https://api.github.com/users/${req.params.username}/repos?per_page=5&sort=created:asc`,
     })
       .then((response) => {
         console.log(response.data)
