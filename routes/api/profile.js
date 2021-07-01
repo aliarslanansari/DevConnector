@@ -249,7 +249,7 @@ router.delete('/education/:edu_id', auth, async (req, res) => {
     const profile = await Profile.findOne({ user: req.user.id })
     const removeIndex = profile.education
       .map((item) => item.id)
-      .indexOf(req.params.exp_id)
+      .indexOf(req.params.edu_id)
     profile.education.splice(removeIndex, 1)
     await profile.save()
     res.json(profile)
@@ -273,7 +273,12 @@ router.get('/github/:username', async (req, res) => {
         res.json(response.data)
       })
       .catch((err) => {
-        console.error(err)
+        console.error(
+          'Github::',
+          err.message,
+          'For username:',
+          req.params.username
+        )
         res.status(404).json({ msg: 'no github profile found' })
       })
   } catch (error) {
