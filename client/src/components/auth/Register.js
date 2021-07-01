@@ -22,7 +22,7 @@ const Register = (props) => {
   const onSubmit = async (e) => {
     e.preventDefault()
     if (password !== password2) {
-      setAlert('Password do not match')
+      setAlert('Password do not match', 'danger')
     } else {
       console.log('Success')
     }
@@ -88,7 +88,7 @@ const Register = (props) => {
 }
 
 Register.propTypes = {
-  setAlert: PropTypes.func
+  setAlert: PropTypes.func.isRequired
 }
 
 export default connect(null, { setAlert })(Register)
