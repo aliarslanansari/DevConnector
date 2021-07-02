@@ -1,5 +1,6 @@
 import axios from 'axios'
 import {
+  CLEAR_PROFILE,
   LOGIN_FAIL,
   LOGIN_SUCCESS,
   LOGOUT,
@@ -68,5 +69,6 @@ export const login =
   }
 
 export const logout = () => (dispatch) => {
+  dispatch({ type: CLEAR_PROFILE })
   dispatch({ type: LOGOUT })
 }
