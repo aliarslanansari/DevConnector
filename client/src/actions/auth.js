@@ -1,5 +1,7 @@
 import axios from 'axios'
 import {
+  LOGIN_FAIL,
+  LOGIN_SUCCESS,
   REGISTER_FAIL,
   REGISTER_SUCCESS,
   USER_AUTH_FAIL,
@@ -39,5 +41,27 @@ export const register =
         errors.forEach((element) => dispatch(setAlert(element.msg, 'danger')))
       }
       dispatch({ type: REGISTER_FAIL })
+    }
+  }
+
+export const login =
+  ({ email, password }) =>
+  async (dispatch) => {
+    try {
+      const res = await axios.post('http://localhost:5000/api/auth', {
+        email,
+        password
+      })
+      dispatch({
+        type: LOGIN_SUCCESS,
+        payload: res.data
+      })
+      dispatch(loadUser())
+    } catch (error) {
+      const errors = error.response.data.errors
+      if (errors) {
+        errors.forEach((element) => dispatch(setAlert(element.msg, 'danger')))
+      }
+      dispatch({ type: LOGIN_FAIL })
     }
   }

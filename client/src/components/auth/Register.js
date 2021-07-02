@@ -1,12 +1,12 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { Link } from 'react-router-dom'
+import { Link, Redirect } from 'react-router-dom'
 import { setAlert } from './../../actions/alert'
 import PropTypes from 'prop-types'
 import { register } from './../../actions/auth'
 
 const Register = (props) => {
-  const { setAlert, register } = props
+  const { setAlert, register, isAuthenticated } = props
   const [formData, setFormData] = React.useState({
     name: '',
     email: '',
@@ -27,6 +27,10 @@ const Register = (props) => {
     } else {
       register({ name, email, password })
     }
+  }
+
+  if (isAuthenticated) {
+    return <Redirect to="/dashboard" />
   }
 
   return (
@@ -87,7 +91,12 @@ const Register = (props) => {
 
 Register.propTypes = {
   setAlert: PropTypes.func.isRequired,
-  register: PropTypes.func.isRequired
+  register: PropTypes.func.isRequired,
+  isAuthenticated: PropTypes.bool.isRequired
 }
 
-export default connect(null, { setAlert, register })(Register)
+const mapStateToProps = (state) => ({
+  isAuthenticated: state.auth.isAuthenticated
+})
+
+export default connect(mapStateToProps, { setAlert, register })(Register)
