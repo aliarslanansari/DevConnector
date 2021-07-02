@@ -2,7 +2,7 @@ import React, { Fragment, useEffect, useState } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { createProfile, getCurrentProfile } from '../../actions/profile'
-import { withRouter } from 'react-router-dom'
+import { withRouter, Link } from 'react-router-dom'
 
 const EditProfile = ({
   createProfile,
@@ -247,9 +247,9 @@ const EditProfile = ({
           className="btn btn-primary my-1"
           disabled={!formTouched}
         />
-        <a className="btn btn-light my-1" href="dashboard.html">
+        <Link className="btn btn-light my-1" to="/dashboard">
           Go Back
-        </a>
+        </Link>
       </form>
     </Fragment>
   )
