@@ -2,6 +2,7 @@ import axios from 'axios'
 import {
   LOGIN_FAIL,
   LOGIN_SUCCESS,
+  LOGOUT,
   REGISTER_FAIL,
   REGISTER_SUCCESS,
   USER_AUTH_FAIL,
@@ -65,3 +66,7 @@ export const login =
       dispatch({ type: LOGIN_FAIL })
     }
   }
+
+export const logout = () => (dispatch) => {
+  dispatch({ type: LOGOUT })
+}
