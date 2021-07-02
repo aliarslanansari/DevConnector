@@ -34,7 +34,7 @@ router.post(
     auth,
     [
       check('status', 'Status is required').not().isEmpty(),
-      check('skills', 'Skills is required').not().isEmpty(),
+      check('skills', 'Skills is required').not().isEmpty().isString(),
     ],
   ],
   async (req, res) => {
