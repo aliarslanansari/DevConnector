@@ -1,5 +1,11 @@
 import axios from 'axios'
-import { GET_PROFILE_FAIL, GET_PROFILE_SUCCESS, UPDATE_PROFILE } from './types'
+import {
+  CLEAR_PROFILE,
+  ACCOUNT_DELETED,
+  GET_PROFILE_FAIL,
+  GET_PROFILE_SUCCESS,
+  UPDATE_PROFILE
+} from './types'
 import { setAlert } from './alert'
 
 export const getCurrentProfile = () => async (dispatch) => {
@@ -114,4 +120,67 @@ export const addEducation = (formData, history) => async (dispatch) => {
       }
     })
   }
+}
+
+// delete experience
+export const deleteExperience = (id) => async (dispatch) => {
+  try {
+    const res = await axios.delete(
+      `http://localhost:5000/api/profile/experience/${id}`
+    )
+    dispatch({
+      type: UPDATE_PROFILE,
+      payload: res.data
+    })
+    dispatch(setAlert('Experience Removed', 'success'))
+  } catch (error) {
+    dispatch({
+      type: GET_PROFILE_FAIL,
+      payload: {
+        msg: error.response?.statusText,
+        status: error.response?.status
+      }
+    })
+  }
+}
+
+// delete education
+export const deleteEducation = (id) => async (dispatch) => {
+  try {
+    const res = await axios.delete(
+      `http://localhost:5000/api/profile/education/${id}`
+    )
+    dispatch({
+      type: UPDATE_PROFILE,
+      payload: res.data
+    })
+    dispatch(setAlert('Education Removed', 'success'))
+  } catch (error) {
+    dispatch({
+      type: GET_PROFILE_FAIL,
+      payload: {
+        msg: error.response?.statusText,
+        status: error.response?.status
+      }
+    })
+  }
+}
+
+// delete account and profile
+export const deleteAccount = () => async (dispatch) => {
+  if (window.confirm('Are you sure?, This can not be undone!'))
+    try {
+      await axios.delete(`http://localhost:5000/api/profile`)
+      dispatch({ type: CLEAR_PROFILE })
+      dispatch({ type: ACCOUNT_DELETED })
+      dispatch(setAlert('Your Account has been permanantly', 'success'))
+    } catch (error) {
+      dispatch({
+        type: GET_PROFILE_FAIL,
+        payload: {
+          msg: error.response?.statusText,
+          status: error.response?.status
+        }
+      })
+    }
 }
