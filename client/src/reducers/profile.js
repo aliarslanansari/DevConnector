@@ -1,7 +1,9 @@
 import {
   CLEAR_PROFILE,
+  GET_PROFILES_SUCCESS,
   GET_PROFILE_FAIL,
   GET_PROFILE_SUCCESS,
+  GET_REPOS_SUCCESS,
   UPDATE_PROFILE
 } from '../actions/types'
 
@@ -23,6 +25,12 @@ const profile = (state = initialState, { type, payload }) => {
         loading: false,
         error: {}
       }
+    case GET_PROFILES_SUCCESS:
+      return {
+        ...state,
+        profiles: payload,
+        loading: false
+      }
     case GET_PROFILE_FAIL:
       return {
         ...state,
@@ -36,6 +44,12 @@ const profile = (state = initialState, { type, payload }) => {
         repos: [],
         loading: false,
         error: {}
+      }
+    case GET_REPOS_SUCCESS:
+      return {
+        ...state,
+        repos: payload,
+        loading: false
       }
     default:
       return state

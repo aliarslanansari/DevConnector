@@ -4,7 +4,9 @@ import {
   ACCOUNT_DELETED,
   GET_PROFILE_FAIL,
   GET_PROFILE_SUCCESS,
-  UPDATE_PROFILE
+  UPDATE_PROFILE,
+  GET_PROFILES_SUCCESS,
+  GET_REPOS_SUCCESS
 } from './types'
 import { setAlert } from './alert'
 
@@ -13,6 +15,63 @@ export const getCurrentProfile = () => async (dispatch) => {
     const res = await axios.get('http://localhost:5000/api/profile/me')
     dispatch({
       type: GET_PROFILE_SUCCESS,
+      payload: res.data
+    })
+  } catch (error) {
+    dispatch({
+      type: GET_PROFILE_FAIL,
+      payload: {
+        msg: error.response?.statusText,
+        status: error.response?.status
+      }
+    })
+  }
+}
+
+export const getProfiles = () => async (dispatch) => {
+  dispatch({ type: CLEAR_PROFILE })
+  try {
+    const res = await axios.get('http://localhost:5000/api/profile')
+    dispatch({
+      type: GET_PROFILES_SUCCESS,
+      payload: res.data
+    })
+  } catch (error) {
+    dispatch({
+      type: GET_PROFILE_FAIL,
+      payload: {
+        msg: error.response?.statusText,
+        status: error.response?.status
+      }
+    })
+  }
+}
+
+export const getProfileById = (userId) => async (dispatch) => {
+  try {
+    const res = await axios.get(`http://localhost:5000/api/profile/${userId}`)
+    dispatch({
+      type: GET_PROFILE_SUCCESS,
+      payload: res.data
+    })
+  } catch (error) {
+    dispatch({
+      type: GET_PROFILE_FAIL,
+      payload: {
+        msg: error.response?.statusText,
+        status: error.response?.status
+      }
+    })
+  }
+}
+
+export const getGithubRepos = (username) => async (dispatch) => {
+  try {
+    const res = await axios.get(
+      `http://localhost:5000/api/profile/github/${username}`
+    )
+    dispatch({
+      type: GET_REPOS_SUCCESS,
       payload: res.data
     })
   } catch (error) {
