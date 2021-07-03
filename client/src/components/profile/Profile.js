@@ -6,6 +6,8 @@ import { getProfileById } from './../../actions/profile'
 import Spinner from './../layouts/Spinner'
 import ProfileTop from './ProfileTop'
 import ProfileAbout from './ProfileAbout'
+import ProfileExperience from './ProfileExperience'
+import ProfileEducation from './ProfileEducation'
 
 const Profile = ({ getProfileById, profile: { profile, loading }, auth }) => {
   const { id: userId } = useParams()
@@ -33,6 +35,8 @@ const Profile = ({ getProfileById, profile: { profile, loading }, auth }) => {
           <div className="profile-grid my-1">
             <ProfileTop profile={profile} />
             <ProfileAbout profile={profile} />
+            <ProfileExperience profile={profile} />
+            <ProfileEducation profile={profile} />
           </div>
         </Fragment>
       )}
