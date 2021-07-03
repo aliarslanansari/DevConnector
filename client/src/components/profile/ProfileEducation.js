@@ -17,6 +17,10 @@ const ProfileEducation = ({ profile }) => {
             <p>
               <strong>Degree: </strong>
               {edu.degree}
+            </p>{' '}
+            <p>
+              <strong>Field of study: </strong>
+              {edu.fieldofstudy}
             </p>
             <p>
               <strong>Description: </strong>
