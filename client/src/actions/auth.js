@@ -27,6 +27,8 @@ export const loadUser = () => async (dispatch) => {
 export const register =
   ({ name, email, password }) =>
   async (dispatch) => {
+    dispatch({ type: CLEAR_PROFILE })
+    dispatch({ type: LOGOUT })
     try {
       const res = await axios.post('http://localhost:5000/api/users', {
         name,
