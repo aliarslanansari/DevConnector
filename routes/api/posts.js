@@ -172,7 +172,7 @@ router.post(
       }
       post.comments.unshift(newComment)
       await post.save()
-      res.json({ postId: post._id, comments: post.comments })
+      res.json(post.comments)
     } catch (error) {
       console.error(error.message)
       res.status(500).send('Server Error')
