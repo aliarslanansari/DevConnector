@@ -5,7 +5,9 @@ import {
   POST_DELETED,
   UPDATE_LIKES,
   ADD_POST,
-  GET_SINGLE_POST_SUCCESS
+  GET_SINGLE_POST_SUCCESS,
+  ADD_COMMENT,
+  REMOVE_COMMENT
 } from './types'
 import { setAlert } from './alert'
 
@@ -97,6 +99,26 @@ export const addPost = (formData) => async (dispatch) => {
 
     dispatch({ type: ADD_POST, payload: res.data })
     dispatch(setAlert('Your post is live!', 'success'))
+  } catch (error) {
+    dispatch({
+      type: POST_ERROR,
+      payload: {
+        msg: error.response?.statusText,
+        status: error.response?.status
+      }
+    })
+  }
+}
+
+export const addComment = (postId, formData) => async (dispatch) => {
+  try {
+    const res = await axios.post(
+      `http://localhost:5000/api/posts/comment/${postId}`,
+      formData
+    )
+
+    dispatch({ type: ADD_COMMENT, payload: res.data })
+    dispatch(setAlert('Comment Added', 'success'))
   } catch (error) {
     dispatch({
       type: POST_ERROR,
