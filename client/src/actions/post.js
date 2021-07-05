@@ -1,6 +1,6 @@
 import axios from 'axios'
 import {
-  GET_POSTS_FAILURE,
+  POST_ERROR,
   GET_POSTS_SUCCESS,
   POST_DELETED,
   UPDATE_LIKES
@@ -13,7 +13,7 @@ export const getPosts = () => async (dispatch) => {
     dispatch({ type: GET_POSTS_SUCCESS, payload: res.data })
   } catch (error) {
     dispatch({
-      type: GET_POSTS_FAILURE,
+      type: POST_ERROR,
       payload: {
         msg: error.response?.statusText,
         status: error.response?.status
@@ -31,7 +31,7 @@ export const addLike = (postId) => async (dispatch) => {
     dispatch({ type: UPDATE_LIKES, payload: { postId, likes: res.data } })
   } catch (error) {
     dispatch({
-      type: GET_POSTS_FAILURE,
+      type: POST_ERROR,
       payload: {
         msg: error.response?.statusText,
         status: error.response?.status
@@ -49,7 +49,7 @@ export const removeLike = (postId) => async (dispatch) => {
     dispatch({ type: UPDATE_LIKES, payload: { postId, likes: res.data } })
   } catch (error) {
     dispatch({
-      type: GET_POSTS_FAILURE,
+      type: POST_ERROR,
       payload: {
         msg: error.response?.statusText,
         status: error.response?.status
@@ -65,7 +65,7 @@ export const deletePost = (postId) => async (dispatch) => {
     dispatch(setAlert('Post Deleted', 'success'))
   } catch (error) {
     dispatch({
-      type: GET_POSTS_FAILURE,
+      type: POST_ERROR,
       payload: {
         msg: error.response?.statusText,
         status: error.response?.status

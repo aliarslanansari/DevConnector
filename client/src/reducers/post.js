@@ -1,5 +1,5 @@
 import {
-  GET_POSTS_FAILURE,
+  POST_ERROR,
   GET_POSTS_SUCCESS,
   POST_DELETED,
   UPDATE_LIKES
@@ -25,7 +25,7 @@ export default (state = initialState, { type, payload }) => {
         posts: state.posts.filter((post) => post._id !== payload),
         loading: false
       }
-    case GET_POSTS_FAILURE:
+    case POST_ERROR:
       return { ...state, error: payload, loading: false }
     default:
       return state
