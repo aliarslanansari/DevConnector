@@ -21,6 +21,7 @@ import Profile from './components/profile/Profile'
 import Posts from './components/posts/Posts'
 import ErrorBoundary from './components/error-boundary/ErrorBoundary'
 import Post from './components/post/Post'
+import NotFoundPage from './components/layouts/NotFoundPage'
 
 if (localStorage.token) {
   setAuthToken(localStorage.token)
@@ -36,39 +37,38 @@ const App = () => {
         <React.Fragment>
           <Navbar />
           <ErrorBoundary>
-            <Route exact path="/" component={Landing} />
-            <section className={'container'}>
-              <Alert />
-              <Switch>
-                <Route exact path="/login" component={Login} />
-                <Route exact path="/register" component={Register} />
-                <Route exact path="/profiles" component={Profiles} />
-                <Route exact path="/profile/:id" component={Profile} />
-                <PrivateRoute exact path="/dashboard" component={Dashboard} />
-                <PrivateRoute
-                  exact
-                  path="/create-profile"
-                  component={CreateProfile}
-                />
-                <PrivateRoute
-                  exact
-                  path="/edit-profile"
-                  component={EditProfile}
-                />
-                <PrivateRoute
-                  exact
-                  path="/add-experience"
-                  component={AddExperience}
-                />
-                <PrivateRoute
-                  exact
-                  path="/add-education"
-                  component={AddEducation}
-                />
-                <PrivateRoute exact path="/posts" component={Posts} />
-                <PrivateRoute exact path="/posts/:postId" component={Post} />
-              </Switch>
-            </section>
+            <Alert />
+            <Switch>
+              <Route exact path="/" component={Landing} />
+              <Route exact path="/login" component={Login} />
+              <Route exact path="/register" component={Register} />
+              <Route exact path="/profiles" component={Profiles} />
+              <Route exact path="/profile/:id" component={Profile} />
+              <PrivateRoute exact path="/dashboard" component={Dashboard} />
+              <PrivateRoute
+                exact
+                path="/create-profile"
+                component={CreateProfile}
+              />
+              <PrivateRoute
+                exact
+                path="/edit-profile"
+                component={EditProfile}
+              />
+              <PrivateRoute
+                exact
+                path="/add-experience"
+                component={AddExperience}
+              />
+              <PrivateRoute
+                exact
+                path="/add-education"
+                component={AddEducation}
+              />
+              <PrivateRoute exact path="/posts" component={Posts} />
+              <PrivateRoute exact path="/posts/:postId" component={Post} />
+              <Route exact path="/*" component={NotFoundPage} />
+            </Switch>
           </ErrorBoundary>
         </React.Fragment>
       </Router>

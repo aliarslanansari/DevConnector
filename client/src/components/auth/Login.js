@@ -25,7 +25,7 @@ const Login = ({ login, isAuthenticated }) => {
     return <Redirect to="/dashboard" />
   }
   return (
-    <React.Fragment>
+    <section className={'container'}>
       <h1 className="large text-primary">Sign In</h1>
       <p className="lead">
         <i className="fas fa-user"></i> Sign into your account.
@@ -55,7 +55,7 @@ const Login = ({ login, isAuthenticated }) => {
       <p className="my-1">
         Don't have an account? <Link to="/register">Sign Up</Link>
       </p>
-    </React.Fragment>
+    </section>
   )
 }
 Login.propTypes = {

@@ -43,7 +43,7 @@ const CreateProfile = ({ createProfile, history }) => {
     createProfile(formData, history)
   }
   return (
-    <Fragment>
+    <section className="container">
       <h1 className="large text-primary">Create Your Profile</h1>
       <p className="lead">
         <i className="fas fa-user"></i> Let's get some information to make your
@@ -211,7 +211,7 @@ const CreateProfile = ({ createProfile, history }) => {
           Go Back
         </Link>
       </form>
-    </Fragment>
+    </section>
   )
 }
 

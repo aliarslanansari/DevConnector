@@ -25,7 +25,7 @@ const AddExperience = ({ history, addExperience }) => {
 
   const { company, title, location, from, to, current, description } = formData
   return (
-    <Fragment>
+    <section className="container">
       <h1 className="large text-primary">Add An Experience</h1>
       <p className="lead">
         <i className="fas fa-code-branch"></i> Add any developer/programming
@@ -108,7 +108,7 @@ const AddExperience = ({ history, addExperience }) => {
           Go Back
         </Link>
       </form>
-    </Fragment>
+    </section>
   )
 }
 
