@@ -3,7 +3,8 @@ import {
   POST_ERROR,
   GET_POSTS_SUCCESS,
   POST_DELETED,
-  UPDATE_LIKES
+  UPDATE_LIKES,
+  ADD_POST
 } from './types'
 import { setAlert } from './alert'
 
@@ -63,6 +64,23 @@ export const deletePost = (postId) => async (dispatch) => {
 
     dispatch({ type: POST_DELETED, payload: postId })
     dispatch(setAlert('Post Deleted', 'success'))
+  } catch (error) {
+    dispatch({
+      type: POST_ERROR,
+      payload: {
+        msg: error.response?.statusText,
+        status: error.response?.status
+      }
+    })
+  }
+}
+
+export const addPost = (formData) => async (dispatch) => {
+  try {
+    const res = await axios.post(`http://localhost:5000/api/posts`, formData)
+
+    dispatch({ type: ADD_POST, payload: res.data })
+    dispatch(setAlert('Your post is live!', 'success'))
   } catch (error) {
     dispatch({
       type: POST_ERROR,

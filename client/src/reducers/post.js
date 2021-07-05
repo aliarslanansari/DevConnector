@@ -2,7 +2,8 @@ import {
   POST_ERROR,
   GET_POSTS_SUCCESS,
   POST_DELETED,
-  UPDATE_LIKES
+  UPDATE_LIKES,
+  ADD_POST
 } from './../actions/types'
 
 const initialState = { posts: [], post: null, loading: true, error: {} }
@@ -23,6 +24,12 @@ export default (state = initialState, { type, payload }) => {
       return {
         ...state,
         posts: state.posts.filter((post) => post._id !== payload),
+        loading: false
+      }
+    case ADD_POST:
+      return {
+        ...state,
+        posts: [payload, ...state.posts],
         loading: false
       }
     case POST_ERROR:
