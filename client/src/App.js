@@ -22,10 +22,12 @@ import Posts from './components/posts/Posts'
 import ErrorBoundary from './components/error-boundary/ErrorBoundary'
 import Post from './components/post/Post'
 import NotFoundPage from './components/layouts/NotFoundPage'
+import axios from 'axios'
 
 if (localStorage.token) {
   setAuthToken(localStorage.token)
 }
+axios.defaults.baseURL = process.env.REACT_APP_BACKEND_BASEURL
 
 const App = () => {
   useEffect(() => {
@@ -35,9 +37,9 @@ const App = () => {
     <Provider store={store}>
       <Router>
         <React.Fragment>
+          <Alert />
           <Navbar />
           <ErrorBoundary>
-            <Alert />
             <Switch>
               <Route exact path="/" component={Landing} />
               <Route exact path="/login" component={Login} />

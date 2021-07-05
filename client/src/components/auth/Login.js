@@ -9,7 +9,6 @@ const Login = ({ login, isAuthenticated }) => {
     email: '',
     password: ''
   })
-
   const { email, password } = formData
   const onChange = (e) =>
     setFormData((form) => ({
