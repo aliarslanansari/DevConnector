@@ -51,7 +51,7 @@ export default (state = initialState, { type, payload }) => {
             (comment) => comment._id !== payload
           )
         },
-        loading: state
+        loading: false
       }
     default:
       return state
