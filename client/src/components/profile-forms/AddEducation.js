@@ -2,7 +2,7 @@ import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { addEducation } from './../../actions/profile'
 import { Link, withRouter } from 'react-router-dom'
-import React, { Fragment, useState } from 'react'
+import React, { useState } from 'react'
 
 const AddEducation = ({ history, addEducation }) => {
   const [formData, setFormData] = useState({
