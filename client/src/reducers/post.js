@@ -1,6 +1,7 @@
 import {
   GET_POSTS_FAILURE,
   GET_POSTS_SUCCESS,
+  POST_DELETED,
   UPDATE_LIKES
 } from './../actions/types'
 
@@ -16,6 +17,12 @@ export default (state = initialState, { type, payload }) => {
         posts: state.posts.map((post) =>
           post._id === payload.postId ? { ...post, likes: payload.likes } : post
         ),
+        loading: false
+      }
+    case POST_DELETED:
+      return {
+        ...state,
+        posts: state.posts.filter((post) => post._id !== payload),
         loading: false
       }
     case GET_POSTS_FAILURE:
