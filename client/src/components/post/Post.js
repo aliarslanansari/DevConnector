@@ -5,6 +5,7 @@ import { getPost } from './../../actions/post'
 import { Link, useParams } from 'react-router-dom'
 import PostItem from './../posts/PostItem'
 import Spinner from './../layouts/Spinner'
+import CommentForm from './CommentForm'
 
 const Post = ({ getPost, post: { loading, post } }) => {
   const { postId } = useParams()
@@ -21,6 +22,7 @@ const Post = ({ getPost, post: { loading, post } }) => {
         Back to Posts
       </Link>
       <PostItem showActions={false} post={post} />
+      <CommentForm postId={post._id} />
     </Fragment>
   )
 }
