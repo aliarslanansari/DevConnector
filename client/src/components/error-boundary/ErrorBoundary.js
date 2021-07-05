@@ -1,4 +1,3 @@
-/* eslint-disable node/handle-callback-err */
 import React from 'react'
 
 class ErrorBoundary extends React.Component {
@@ -7,7 +6,7 @@ class ErrorBoundary extends React.Component {
     this.state = { hasError: false }
   }
 
-  static getDerivedStateFromError(error) {
+  static getDerivedStateFromError() {
     return { hasError: true }
   }
 
