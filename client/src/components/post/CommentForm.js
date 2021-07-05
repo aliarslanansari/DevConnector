@@ -37,8 +37,6 @@ CommentForm.propTypes = {
   postId: PropTypes.string.isRequired
 }
 
-const mapStateToProps = (state) => ({})
-
 const mapDispatchToProps = { addComment }
 
-export default connect(mapStateToProps, mapDispatchToProps)(CommentForm)
+export default connect(null, mapDispatchToProps)(CommentForm)
