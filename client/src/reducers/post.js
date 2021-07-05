@@ -3,7 +3,8 @@ import {
   GET_POSTS_SUCCESS,
   POST_DELETED,
   UPDATE_LIKES,
-  ADD_POST
+  ADD_POST,
+  GET_SINGLE_POST_SUCCESS
 } from './../actions/types'
 
 const initialState = { posts: [], post: null, loading: true, error: {} }
@@ -32,6 +33,9 @@ export default (state = initialState, { type, payload }) => {
         posts: [payload, ...state.posts],
         loading: false
       }
+    case GET_SINGLE_POST_SUCCESS: {
+      return { ...state, post: payload, loading: false }
+    }
     case POST_ERROR:
       return { ...state, error: payload, loading: false }
     default:

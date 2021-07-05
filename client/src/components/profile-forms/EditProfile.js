@@ -28,7 +28,6 @@ const EditProfile = ({
   const [displaySocialInputs, setDisplaySocialInputs] = useState(false)
 
   useEffect(() => {
-    console.log('loading edit profile')
     getCurrentProfile()
     if (profile) {
       setFormData({

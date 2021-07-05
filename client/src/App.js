@@ -20,6 +20,7 @@ import Profiles from './components/profiles/Profiles'
 import Profile from './components/profile/Profile'
 import Posts from './components/posts/Posts'
 import ErrorBoundary from './components/error-boundary/ErrorBoundary'
+import Post from './components/post/Post'
 
 if (localStorage.token) {
   setAuthToken(localStorage.token)
@@ -65,6 +66,7 @@ const App = () => {
                   component={AddEducation}
                 />
                 <PrivateRoute exact path="/posts" component={Posts} />
+                <PrivateRoute exact path="/posts/:postId" component={Post} />
               </Switch>
             </section>
           </ErrorBoundary>

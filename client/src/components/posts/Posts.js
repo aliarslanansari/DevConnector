@@ -6,11 +6,10 @@ import Spinner from './../layouts/Spinner'
 import PostItem from './PostItem'
 import PostForm from './PostForm'
 
-const Posts = ({ getPosts, post: { posts, loading }, auth }) => {
+const Posts = ({ getPosts, post: { posts, loading } }) => {
   useEffect(() => {
     getPosts()
   }, [])
-  console.log({ posts })
   return loading ? (
     <Spinner />
   ) : (
@@ -21,7 +20,7 @@ const Posts = ({ getPosts, post: { posts, loading }, auth }) => {
       </p>
       <PostForm />
       {posts.map((post) => {
-        return <PostItem key={post._id} post={post} auth={auth} />
+        return <PostItem key={post._id} post={post} />
       })}
     </Fragment>
   )
@@ -29,10 +28,9 @@ const Posts = ({ getPosts, post: { posts, loading }, auth }) => {
 
 Posts.propTypes = {
   post: PropTypes.object.isRequired,
-  getPosts: PropTypes.func.isRequired,
-  auth: PropTypes.object.isRequired
+  getPosts: PropTypes.func.isRequired
 }
 
-const mapStateToProps = (state) => ({ post: state.post, auth: state.auth })
+const mapStateToProps = (state) => ({ post: state.post })
 
 export default connect(mapStateToProps, { getPosts })(Posts)

@@ -4,7 +4,8 @@ import {
   GET_POSTS_SUCCESS,
   POST_DELETED,
   UPDATE_LIKES,
-  ADD_POST
+  ADD_POST,
+  GET_SINGLE_POST_SUCCESS
 } from './types'
 import { setAlert } from './alert'
 
@@ -12,6 +13,21 @@ export const getPosts = () => async (dispatch) => {
   try {
     const res = await axios.get('http://localhost:5000/api/posts')
     dispatch({ type: GET_POSTS_SUCCESS, payload: res.data })
+  } catch (error) {
+    dispatch({
+      type: POST_ERROR,
+      payload: {
+        msg: error.response?.statusText,
+        status: error.response?.status
+      }
+    })
+  }
+}
+
+export const getPost = (postId) => async (dispatch) => {
+  try {
+    const res = await axios.get(`http://localhost:5000/api/posts/${postId}`)
+    dispatch({ type: GET_SINGLE_POST_SUCCESS, payload: res.data })
   } catch (error) {
     dispatch({
       type: POST_ERROR,

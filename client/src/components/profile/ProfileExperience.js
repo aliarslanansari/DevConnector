@@ -8,7 +8,7 @@ const ProfileExperience = ({ profile }) => {
       <h2 className="text-primary">Experience</h2>
       {profile.experience.length > 0 ? (
         profile.experience.map((exp) => (
-          <div key={exp.id}>
+          <div key={exp._id}>
             <h3 className="text-dark">{exp.company}</h3>
             <p>
               <Moment format="YYYY/MM/DD">{exp.from}</Moment> -{' '}

@@ -108,7 +108,6 @@ export const createProfile =
         window.scrollTo(0, 0)
       }
     } catch (error) {
-      console.log(error)
       const errors = error.response?.data?.errors
       if (errors) {
         errors.forEach((element) => dispatch(setAlert(element.msg, 'danger')))
@@ -138,7 +137,6 @@ export const addExperience = (formData, history) => async (dispatch) => {
     dispatch(setAlert('Experience Added', 'success'))
     history.push('/dashboard')
   } catch (error) {
-    console.log(error)
     const errors = error.response?.data?.errors
     if (errors) {
       errors.forEach((element) => dispatch(setAlert(element.msg, 'danger')))
@@ -168,7 +166,6 @@ export const addEducation = (formData, history) => async (dispatch) => {
     dispatch(setAlert('Education Added', 'success'))
     history.push('/dashboard')
   } catch (error) {
-    console.log(error)
     const errors = error.response?.data?.errors
     if (errors) {
       errors.forEach((element) => dispatch(setAlert(element.msg, 'danger')))
